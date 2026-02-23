@@ -1,8 +1,19 @@
-const Header = ({ onLogout, onViewServices, onNavigate, currentPage }) => {
+import { NavLink, useNavigate } from 'react-router-dom';
+
+const Header = ({ onLogout }) => {
+  const navigate = useNavigate();
+
   const navItems = [
-    { key: 'dashboard', label: 'Home', action: () => onNavigate('home') },
-    { key: 'services', label: 'Services', action: () => onViewServices() },
+    { to: '/', label: 'Home' },
+    { to: '/projects', label: 'Projects' },
+    { to: '/profile', label: 'Profile' },
+    { to: '/contact', label: 'Contact' },
   ];
+
+  const handleLogout = () => {
+    onLogout();
+    navigate('/login');
+  };
 
   return (
     <header className="app-header">
@@ -13,18 +24,14 @@ const Header = ({ onLogout, onViewServices, onNavigate, currentPage }) => {
       <nav className="header-nav">
         <ul>
           {navItems.map((item) => (
-            <li key={item.key}>
-              <a
-                href="#"
-                className={currentPage === item.key ? 'active' : ''}
-                onClick={(e) => { e.preventDefault(); item.action(); }}
-              >
+            <li key={item.to}>
+              <NavLink to={item.to} className={({ isActive }) => isActive ? 'active' : ''} end={item.to === '/'}>
                 {item.label}
-              </a>
+              </NavLink>
             </li>
           ))}
           <li>
-            <a href="#" className="nav-logout" onClick={(e) => { e.preventDefault(); onLogout(); }}>
+            <a href="#" className="nav-logout" onClick={(e) => { e.preventDefault(); handleLogout(); }}>
               Logout
             </a>
           </li>

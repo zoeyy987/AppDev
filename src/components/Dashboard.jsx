@@ -1,25 +1,23 @@
 
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useProjects } from '../context/useProjects';
 import Card from './Card';
 
-const Dashboard = ({ onViewServices }) => {
+const Dashboard = () => {
+    const navigate = useNavigate();
+    const { projects, completedProjects, activeProjects, totalRevenue } = useProjects();
     const [searchTerm, setSearchTerm] = useState('');
     const [filterStatus, setFilterStatus] = useState('all');
 
     const stats = [
-        { id: 1, label: 'Services Completed', value: 17, icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg> },
-        { id: 2, label: 'Active Projects', value: 45, icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg> },
-        { id: 3, label: 'Revenue', value: '₱24,500', icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><text x="12" y="17" textAnchor="middle" fontSize="16" fontWeight="600" fill="currentColor" stroke="none">₱</text></svg> },
+        { id: 1, label: 'Services Completed', value: completedProjects.length, icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg> },
+        { id: 2, label: 'Active Projects', value: activeProjects.length, icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg> },
+        { id: 3, label: 'Revenue', value: `₱${totalRevenue.toLocaleString()}`, icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><text x="12" y="17" textAnchor="middle" fontSize="16" fontWeight="600" fill="currentColor" stroke="none">₱</text></svg> },
     ];
 
-    const recentProjects = [
-        { id: 1, title: 'Logo Design for EcoBrand', client: 'GreenCo', status: 'In Progress', budget: '₱500' },
-        { id: 2, title: 'Website Redesign', client: 'TechStart', status: 'In Progress', budget: '₱1200' },
-        { id: 3, title: '3D Video Animation', client: 'AniHub', status: 'Pending', budget: '₱800' },
-        { id: 4, title: 'Audio Edits', client: 'shiko', status: 'In Progress', budget: '₱900' },
-        { id: 5, title: 'UI/UX Design', client: 'shaki', status: 'Pending', budget: '₱900' },
-        { id: 6, title: 'Video Edits', client: 'shiko', status: 'In Progress', budget: '₱900' }
-    ];
+    // Show non-completed projects as recent orders
+    const recentProjects = projects.filter((p) => p.status !== 'Completed');
 
     const filteredProjects = recentProjects.filter((project) => {
         const matchesSearch =
@@ -38,7 +36,7 @@ const Dashboard = ({ onViewServices }) => {
                     <div
                         key={stat.id}
                         className={`stat-card${stat.label === 'Services Completed' ? ' stat-card--action' : ''}`}
-                        onClick={() => stat.label === 'Services Completed' && onViewServices()}
+                        onClick={() => stat.label === 'Services Completed' && navigate('/projects')}
                     >
                         <div className="stat-card__icon">{stat.icon}</div>
                         <div className="stat-card__info">
@@ -84,7 +82,7 @@ const Dashboard = ({ onViewServices }) => {
                         filteredProjects.map((project) => (
                             <Card key={project.id} title={project.title} status={project.status}>
                                 <p><strong>Client:</strong> {project.client}</p>
-                                <p><strong>Budget:</strong> {project.budget}</p>
+                                <p><strong>Budget:</strong> ₱{(project.budget || 0).toLocaleString()}</p>
                             </Card>
                         ))
                     ) : (

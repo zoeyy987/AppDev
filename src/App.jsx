@@ -1,51 +1,61 @@
-
 import { useState } from 'react';
-import Dashboard from './components/Dashboard';
-import Logout from './components/Logout';
-import ServicesCompleted from './components/ServicesCompleted';
+import { Routes, Route, Navigate, Outlet } from 'react-router-dom';
+import { ProjectsProvider } from './context/ProjectsContext';
 import Header from './components/Header';
+import DashboardPage from './pages/DashboardPage';
+import ProjectsPage from './pages/ProjectsPage';
+import ProfilePage from './pages/ProfilePage';
+import ContactPage from './pages/ContactPage';
+import LoginPage from './pages/LoginPage';
+import NotFoundPage from './pages/NotFoundPage';
 import './index.css';
 
+function ProtectedLayout({ isLoggedIn, onLogout }) {
+  if (!isLoggedIn) return <Navigate to="/login" replace />;
+  return (
+    <div className="dashboard-layout page-fade">
+      <Header onLogout={onLogout} />
+      <main className="main-content">
+        <Outlet />
+      </main>
+      <footer className="app-footer">
+        <p>&copy; 2026 CREATECH Platform. All rights reserved.</p>
+      </footer>
+    </div>
+  );
+}
+
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
-  const [currentPage, setCurrentPage] = useState('dashboard');
+  const [isLoggedIn, setIsLoggedIn] = useState(() => {
+    return localStorage.getItem('createch_auth') === 'true';
+  });
 
-  const handleLogout = () => { setIsLoggedIn(false); setCurrentPage('dashboard'); };
-  const handleLogin = () => setIsLoggedIn(true);
-
-  const handleNavigate = (page) => {
-    if (page === 'home' || page === 'projects') setCurrentPage('dashboard');
-    else setCurrentPage(page);
+  const handleLogout = () => {
+    localStorage.removeItem('createch_auth');
+    setIsLoggedIn(false);
+  };
+  const handleLogin = () => {
+    localStorage.setItem('createch_auth', 'true');
+    setIsLoggedIn(true);
   };
 
-  if (!isLoggedIn) {
-    return (
-      <div className="app">
-        <Logout onLogin={handleLogin} />
-      </div>
-    );
-  }
-
   return (
-    <div className="app">
-      <div className="dashboard-layout page-fade">
-        <Header
-          onLogout={handleLogout}
-          onViewServices={() => setCurrentPage('services')}
-          onNavigate={handleNavigate}
-          currentPage={currentPage}
-        />
-        <main className="main-content">
-          {currentPage === 'services'
-            ? <ServicesCompleted onBack={() => setCurrentPage('dashboard')} />
-            : <Dashboard onViewServices={() => setCurrentPage('services')} />
-          }
-        </main>
-        <footer className="app-footer">
-          <p>&copy; 2026 CREATECH Platform. All rights reserved.</p>
-        </footer>
+    <ProjectsProvider>
+      <div className="app">
+        <Routes>
+          <Route path="/login" element={
+            isLoggedIn ? <Navigate to="/" replace /> : <LoginPage onLogin={handleLogin} />
+          } />
+          <Route element={<ProtectedLayout isLoggedIn={isLoggedIn} onLogout={handleLogout} />}>
+            <Route path="/" element={<DashboardPage />} />
+            <Route path="/projects" element={<ProjectsPage />} />
+            <Route path="/profile" element={<ProfilePage />} />
+            <Route path="/contact" element={<ContactPage />} />
+          </Route>
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
       </div>
-    </div>
+    </ProjectsProvider>
   );
 }
 
