@@ -7,7 +7,6 @@ import ProjectsPage from './pages/ProjectsPage';
 import ProfilePage from './pages/ProfilePage';
 import ContactPage from './pages/ContactPage';
 import LoginPage from './pages/LoginPage';
-import NotFoundPage from './pages/NotFoundPage';
 import './index.css';
 
 function ProtectedLayout({ isLoggedIn, onLogout }) {
@@ -52,7 +51,7 @@ function App() {
             <Route path="/profile" element={<ProfilePage />} />
             <Route path="/contact" element={<ContactPage />} />
           </Route>
-          <Route path="*" element={<NotFoundPage />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </div>
     </ProjectsProvider>
