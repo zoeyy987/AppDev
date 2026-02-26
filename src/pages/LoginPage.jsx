@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '../components/Button';
+import { Eye, EyeOff } from 'lucide-react';
 
 const LoginPage = ({ onLogin }) => {
   const [isSignUp, setIsSignUp] = useState(false);
@@ -9,6 +10,7 @@ const LoginPage = ({ onLogin }) => {
     password: '',
     confirmPassword: '',
     fullName: '',
+    role: 'creator',
     rememberMe: false,
   });
   const [errors, setErrors] = useState({});
@@ -38,14 +40,14 @@ const LoginPage = ({ onLogin }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!validate()) return;
-    onLogin();
+    onLogin(form.role); // Pass selected role to App
     navigate('/');
   };
 
   const toggleMode = () => {
     setIsSignUp(!isSignUp);
     setErrors({});
-    setForm({ email: '', password: '', confirmPassword: '', fullName: '', rememberMe: false });
+    setForm({ email: '', password: '', confirmPassword: '', fullName: '', role: 'creator', rememberMe: false });
   };
 
   return (
@@ -73,7 +75,7 @@ const LoginPage = ({ onLogin }) => {
             <div className="password-wrapper">
               <input className={`form-input${errors.password ? ' form-input--error' : ''}`} type={showPassword ? 'text' : 'password'} id="login-password" name="password" value={form.password} onChange={handleChange} placeholder="••••••••" />
               <button type="button" className="password-toggle" onClick={() => setShowPassword(!showPassword)}>
-                {showPassword ? 'Hide' : 'Show'}
+                {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
               </button>
             </div>
             {errors.password && <span className="form-error">{errors.password}</span>}
@@ -85,18 +87,31 @@ const LoginPage = ({ onLogin }) => {
               {errors.confirmPassword && <span className="form-error">{errors.confirmPassword}</span>}
             </div>
           )}
+
+          <div className="form-group" style={{ marginBottom: '16px' }}>
+            <label className="form-label" htmlFor="role">Mock Role Login</label>
+            <select id="role" name="role" className="form-input sort-select" style={{ maxWidth: '100%' }} value={form.role} onChange={handleChange}>
+              <option value="client">Client</option>
+              <option value="creator">Creator</option>
+              <option value="admin">Admin</option>
+            </select>
+          </div>
+
           {!isSignUp && (
-            <label className="checkbox-label">
+            <label className="checkbox-label" style={{ marginBottom: '16px' }}>
               <input type="checkbox" name="rememberMe" checked={form.rememberMe} onChange={handleChange} />
               <span>Remember me</span>
             </label>
           )}
-          <Button variant="primary" type="submit">{isSignUp ? 'Sign Up' : 'Log In'}</Button>
+
+          <Button variant="primary" type="submit" style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
+            {isSignUp ? 'Sign Up' : 'Log In'}
+          </Button>
         </form>
 
-        <p className="login-toggle">
+        <p className="login-toggle" style={{ marginTop: '16px' }}>
           {isSignUp ? 'Already have an account? ' : "Don't have an account? "}
-          <a href="#" onClick={(e) => { e.preventDefault(); toggleMode(); }}>
+          <a href="#" onClick={(e) => { e.preventDefault(); toggleMode(); }} style={{ color: '#818cf8', textDecoration: 'none' }}>
             {isSignUp ? 'Log In' : 'Sign Up'}
           </a>
         </p>

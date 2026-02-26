@@ -5,7 +5,7 @@ import Button from '../components/Button';
 
 const emptyForm = { title: '', client: '', status: 'Pending', budget: '', deadline: '', description: '' };
 
-const ProjectsPage = () => {
+const ProjectsPage = ({ userRole = 'creator' }) => {
   const { projects, addProject, updateProject, deleteProject } = useProjects();
   const [formData, setFormData] = useState(emptyForm);
   const [showForm, setShowForm] = useState(false);
@@ -81,9 +81,11 @@ const ProjectsPage = () => {
 
       <div className="section__header">
         <h2 className="section__title">Projects ({projects.length})</h2>
-        <Button variant="primary" onClick={() => { setShowForm(!showForm); setEditingId(null); setFormData(emptyForm); }}>
-          {showForm ? 'Close' : '+ New Project'}
-        </Button>
+        {userRole !== 'client' && (
+          <Button variant="primary" onClick={() => { setShowForm(!showForm); setEditingId(null); setFormData(emptyForm); }}>
+            {showForm ? 'Close' : '+ New Project'}
+          </Button>
+        )}
       </div>
 
       {showForm && (
@@ -129,14 +131,14 @@ const ProjectsPage = () => {
       <div className="toolbar">
         <div className="search-wrapper">
           <span className="search-icon">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" /></svg>
           </span>
           <input type="text" className="search-input" placeholder="Search projects..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
         </div>
         <div className="filter-group">
-          {['all', 'in-progress', 'pending', 'completed'].map((s) => (
+          {['all', 'in-progress', 'pending', 'completed', 'suspended'].map((s) => (
             <button key={s} className={`filter-btn${filterStatus === s ? ' filter-btn--active' : ''}`} onClick={() => setFilterStatus(s)}>
-              {s === 'all' ? 'All' : s === 'in-progress' ? 'Active' : s === 'pending' ? 'Pending' : 'Done'}
+              {s === 'all' ? 'All' : s === 'in-progress' ? 'Active' : s === 'pending' ? 'Pending' : s === 'suspended' ? 'Suspended' : 'Done'}
             </button>
           ))}
         </div>
@@ -152,13 +154,48 @@ const ProjectsPage = () => {
           filtered.map((project) => (
             <Card key={project.id} title={project.title} status={project.status}>
               <p><strong>Client:</strong> {project.client}</p>
-              <p><strong>Budget:</strong> ₱{project.budget.toLocaleString()}</p>
+
+              {userRole === 'admin' ? (
+                <>
+                  <p><strong>Creator:</strong> {project.creator || 'Unknown'}</p>
+                  <p><strong>Raw Budget:</strong> ₱{project.budget.toLocaleString()}</p>
+                  <p style={{ color: '#10b981' }}><strong>Platform Fee (15%):</strong> ₱{(project.budget * 0.15).toLocaleString()}</p>
+                  {project.adminNote && (
+                    <div style={{ marginTop: '0.5rem', padding: '0.75rem', background: 'rgba(239, 68, 68, 0.1)', border: '1px solid rgba(239, 68, 68, 0.2)', borderRadius: '6px', fontSize: '0.85rem' }}>
+                      <strong style={{ color: '#ef4444' }}>Admin Note:</strong> {project.adminNote}
+                    </div>
+                  )}
+                </>
+              ) : (
+                <p><strong>Budget:</strong> ₱{project.budget.toLocaleString()}</p>
+              )}
+
               {project.deadline && <p><strong>Deadline:</strong> {project.deadline}</p>}
               {project.description && <p className="card__desc">{project.description}</p>}
-              <div className="card__actions">
-                <button className="card-action-btn card-action-btn--edit" onClick={() => handleEdit(project)}>Edit</button>
-                <button className="card-action-btn card-action-btn--delete" onClick={() => handleDelete(project.id)}>Delete</button>
-              </div>
+
+              {/* Creator/Admin standard actions */}
+              {userRole !== 'client' && (
+                <div className="card__actions">
+                  <button className="card-action-btn card-action-btn--edit" onClick={() => handleEdit(project)}>Edit</button>
+                  <button className="card-action-btn card-action-btn--delete" onClick={() => handleDelete(project.id)}>Delete</button>
+                </div>
+              )}
+
+              {/* Admin moderation actions */}
+              {userRole === 'admin' && (
+                <div className="card__actions" style={{ marginTop: '1rem' }}>
+                  <button
+                    className="card-action-btn card-action-btn--delete"
+                    style={{ width: '100%' }}
+                    onClick={() => {
+                      updateProject(project.id, { status: 'Suspended', adminNote: 'Force suspended by Administrator.' });
+                      showNotification(`Project ${project.id} Suspended.`, 'info');
+                    }}
+                  >
+                    Force Suspend Project
+                  </button>
+                </div>
+              )}
             </Card>
           ))
         ) : (
