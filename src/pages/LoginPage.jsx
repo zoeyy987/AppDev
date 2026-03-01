@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '../components/Button';
 import { Eye, EyeOff } from 'lucide-react';
+import './LoginPage.css';
+import './LogoutPage.css';
 
 const LoginPage = ({ onLogin }) => {
   const [isSignUp, setIsSignUp] = useState(false);
@@ -51,7 +53,7 @@ const LoginPage = ({ onLogin }) => {
   };
 
   return (
-    <div className="logout-page page-fade">
+    <main className="logout-page page-fade">
       <div className="login-card">
         <img src="/assets/splash-icon-light-resized.png" alt="Createch Logo" className="logout-logo" />
         <h2>{isSignUp ? 'Create Account' : 'Welcome Back'}</h2>
@@ -98,10 +100,12 @@ const LoginPage = ({ onLogin }) => {
           </div>
 
           {!isSignUp && (
-            <label className="checkbox-label" style={{ marginBottom: '16px' }}>
-              <input type="checkbox" name="rememberMe" checked={form.rememberMe} onChange={handleChange} />
-              <span>Remember me</span>
-            </label>
+            <div className="checkbox-wrapper" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '16px' }}>
+              <input id="rememberMe" type="checkbox" name="rememberMe" checked={form.rememberMe} onChange={handleChange} />
+              <label htmlFor="rememberMe" className="checkbox-label" style={{ margin: 0 }}>
+                <span>Remember me</span>
+              </label>
+            </div>
           )}
 
           <Button variant="primary" type="submit" style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
@@ -116,7 +120,7 @@ const LoginPage = ({ onLogin }) => {
           </a>
         </p>
       </div>
-    </div>
+    </main>
   );
 };
 

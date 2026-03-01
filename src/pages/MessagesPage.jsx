@@ -1,8 +1,9 @@
 import React from 'react';
+import './MessagesPage.css';
 
 const MessagesPage = () => {
     return (
-        <div className="section page-fade">
+        <section className="section page-fade">
             <header className="section__header">
                 <h2 className="section__title">Messages</h2>
             </header>
@@ -10,7 +11,7 @@ const MessagesPage = () => {
                 <div className="empty-state__icon">💬</div>
                 <p>No messages yet. Start a conversation!</p>
             </div>
-        </div>
+        </section>
     );
 };
 
