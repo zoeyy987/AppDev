@@ -1,5 +1,6 @@
 
 import { AlertOctagon, Scale, MessageSquare, CheckCircle } from 'lucide-react';
+import '../styles/DisputesPage.css';
 
 const mockDisputes = [
     { id: 'DSP-8842', client: 'TechFlow Solutions', creator: 'Alex Rivera', amount: '₱45,000', status: 'Requires Arbitration', date: 'Oct 24, 2026', issue: 'Client claims milestones were missed despite creator providing deliverable proof.' },

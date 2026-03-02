@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useProjects } from '../context/useProjects';
 import Card from '../components/Card';
 import Button from '../components/Button';
+import '../styles/ProjectsPage.css';
 
 const emptyForm = { title: '', client: '', status: 'Pending', budget: '', deadline: '', description: '' };
 

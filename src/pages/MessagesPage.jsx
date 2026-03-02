@@ -1,5 +1,5 @@
 
-import './MessagesPage.css';
+import '../styles/MessagesPage.css';
 
 const MessagesPage = () => {
     return (

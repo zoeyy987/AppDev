@@ -1,5 +1,5 @@
 
-import './CreatorProfilePage.css';
+import '../styles/CreatorProfilePage.css';
 
 const CreatorProfilePage = () => {
     return (

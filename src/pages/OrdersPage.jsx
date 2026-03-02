@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import '../styles/OrdersPage.css';
 
 const OrdersPage = () => {
     const [filter, setFilter] = useState('All');

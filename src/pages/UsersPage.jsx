@@ -1,6 +1,7 @@
 
 import { ShieldAlert, BadgeCheck, MoreVertical, Search, Filter } from 'lucide-react';
 import mockUsers from '../components/mockUsers';
+import '../styles/UsersPage.css';
 
 const UsersPage = () => {
     return (

@@ -1,5 +1,6 @@
 
 import { Users, BarChart3, AlertTriangle, ShieldCheck } from 'lucide-react';
+import '../styles/AdminDashboardPage.css';
 
 const AdminDashboardPage = () => {
     return (

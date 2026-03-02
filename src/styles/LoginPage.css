@@ -80,3 +80,34 @@
 .login-toggle a:hover {
   text-decoration: underline;
 }
+
+/* Checkbox */
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  font-size: 0.82rem;
+  color: #d4d4d8;
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid #27272a;
+  background: #0e0e11;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.checkbox-label:hover {
+  border-color: #3f3f46;
+  background: #18181b;
+}
+
+.checkbox-label input {
+  accent-color: #22c55e;
+}
+
+@media (max-width: 768px) {
+  .login-card {
+    margin: 0 1rem;
+    padding: 32px 24px;
+  }
+}

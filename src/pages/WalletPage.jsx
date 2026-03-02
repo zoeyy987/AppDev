@@ -1,5 +1,6 @@
 import { useState, useCallback } from 'react';
 import { Wallet, ArrowUpRight, Plus, CreditCard } from 'lucide-react';
+import '../styles/WalletPage.css';
 
 const WalletPage = ({ userRole }) => {
     const [balance, setBalance] = useState(150.00);

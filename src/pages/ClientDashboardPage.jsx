@@ -1,5 +1,6 @@
 
 import { Target, CreditCard, Clock, Star, ArrowRight } from 'lucide-react';
+import '../styles/ClientDashboardPage.css';
 
 const ClientDashboardPage = () => {
     return (

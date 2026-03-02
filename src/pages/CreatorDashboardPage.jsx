@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useProjects } from '../context/useProjects';
 import { CheckCircle2, Briefcase, Banknote, Search, Filter, Clock } from 'lucide-react';
+import '../styles/CreatorDashboardPage.css';
 
 const CreatorDashboardPage = () => {
     const navigate = useNavigate();

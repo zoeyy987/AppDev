@@ -1,5 +1,6 @@
 import { useState, memo } from 'react';
 import { User, Bell, Lock, FileText, Sparkles, Users, CreditCard, Settings as SettingsIcon, ShieldAlert } from 'lucide-react';
+import '../styles/SettingsPage.css';
 
 const ToggleSwitch = memo(({ checked, onChange }) => (
     <button
