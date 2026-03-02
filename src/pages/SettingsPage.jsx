@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import { useState, memo } from 'react';
 import { User, Bell, Lock, FileText, Sparkles, Users, CreditCard, Settings as SettingsIcon, ShieldAlert } from 'lucide-react';
 
-const ToggleSwitch = ({ checked, onChange }) => (
+const ToggleSwitch = memo(({ checked, onChange }) => (
     <button
         type="button"
         onClick={() => onChange(!checked)}
@@ -30,7 +30,9 @@ const ToggleSwitch = ({ checked, onChange }) => (
             }}
         />
     </button>
-);
+));
+
+ToggleSwitch.displayName = 'ToggleSwitch';
 
 const SettingsPage = ({ userRole }) => {
     const [activeSection, setActiveSection] = useState('profile');

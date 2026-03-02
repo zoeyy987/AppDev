@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 const OrdersPage = () => {
     const [filter, setFilter] = useState('All');

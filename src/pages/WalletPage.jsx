@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import { Wallet, ArrowDownRight, ArrowUpRight, Plus, CreditCard } from 'lucide-react';
+import { useState, useCallback } from 'react';
+import { Wallet, ArrowUpRight, Plus, CreditCard } from 'lucide-react';
 
 const WalletPage = ({ userRole }) => {
     const [balance, setBalance] = useState(150.00);
     const [amount, setAmount] = useState('');
 
-    const handleWithdraw = (e) => {
+    const handleWithdraw = useCallback((e) => {
         e.preventDefault();
         const numAmount = parseFloat(amount);
         if (!numAmount || numAmount <= 0) return;
@@ -16,16 +16,16 @@ const WalletPage = ({ userRole }) => {
         setBalance(prev => prev - numAmount);
         setAmount('');
         alert(`Successfully withdrew ₱${numAmount.toFixed(2)}`);
-    };
+    }, [amount, balance]);
 
-    const handleDeposit = (e) => {
+    const handleDeposit = useCallback((e) => {
         e.preventDefault();
         const numAmount = parseFloat(amount);
         if (!numAmount || numAmount <= 0) return;
         setBalance(prev => prev + numAmount);
         setAmount('');
         alert(`Successfully deposited ₱${numAmount.toFixed(2)}`);
-    }
+    }, [amount]);
 
     return (
         <main className="dashboard-content page-fade" style={{ padding: '2rem 0' }}>

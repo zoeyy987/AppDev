@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect } from 'react';
+import { createContext, useState, useEffect, useCallback, useMemo } from 'react';
 import defaultProjects from '../components/defaultProjects';
 
 const STORAGE_KEY = 'createch_projects';
@@ -25,39 +25,43 @@ export const ProjectsProvider = ({ children }) => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(projects));
   }, [projects]);
 
-  const addProject = (project) => {
+  // Memoize callbacks to prevent unnecessary re-renders in consumers
+  const addProject = useCallback((project) => {
     const newProject = { ...project, id: Date.now(), budget: Number(project.budget) };
     setProjects((prev) => [...prev, newProject]);
     return newProject;
-  };
+  }, []);
 
-  const updateProject = (id, data) => {
+  const updateProject = useCallback((id, data) => {
     setProjects((prev) =>
       prev.map((p) => (p.id === id ? { ...p, ...data, budget: Number(data.budget) } : p))
     );
-  };
+  }, []);
 
-  const deleteProject = (id) => {
+  const deleteProject = useCallback((id) => {
     setProjects((prev) => prev.filter((p) => p.id !== id));
-  };
+  }, []);
 
-  // Derived data
-  const completedProjects = projects.filter((p) => p.status === 'Completed');
-  const activeProjects = projects.filter((p) => p.status === 'In Progress');
-  const pendingProjects = projects.filter((p) => p.status === 'Pending');
-  const totalRevenue = completedProjects.reduce((sum, p) => sum + (p.budget || 0), 0);
+  // Memoize derived data to avoid recalculating on every render
+  const completedProjects = useMemo(() => projects.filter((p) => p.status === 'Completed'), [projects]);
+  const activeProjects = useMemo(() => projects.filter((p) => p.status === 'In Progress'), [projects]);
+  const pendingProjects = useMemo(() => projects.filter((p) => p.status === 'Pending'), [projects]);
+  const totalRevenue = useMemo(() => completedProjects.reduce((sum, p) => sum + (p.budget || 0), 0), [completedProjects]);
+
+  // Memoize context value to prevent re-renders when object reference changes
+  const contextValue = useMemo(() => ({
+    projects,
+    addProject,
+    updateProject,
+    deleteProject,
+    completedProjects,
+    activeProjects,
+    pendingProjects,
+    totalRevenue,
+  }), [projects, addProject, updateProject, deleteProject, completedProjects, activeProjects, pendingProjects, totalRevenue]);
 
   return (
-    <ProjectsContext.Provider value={{
-      projects,
-      addProject,
-      updateProject,
-      deleteProject,
-      completedProjects,
-      activeProjects,
-      pendingProjects,
-      totalRevenue,
-    }}>
+    <ProjectsContext.Provider value={contextValue}>
       {children}
     </ProjectsContext.Provider>
   );

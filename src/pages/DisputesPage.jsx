@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { AlertOctagon, Scale, MessageSquare, CheckCircle } from 'lucide-react';
 
 const mockDisputes = [

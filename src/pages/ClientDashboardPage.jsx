@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { Target, CreditCard, Clock, Star, ArrowRight } from 'lucide-react';
 
 const ClientDashboardPage = () => {

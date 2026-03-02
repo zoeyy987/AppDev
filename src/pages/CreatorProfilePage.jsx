@@ -1,4 +1,4 @@
-import React from 'react';
+
 import './CreatorProfilePage.css';
 
 const CreatorProfilePage = () => {
