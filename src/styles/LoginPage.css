@@ -10,20 +10,17 @@
   border: 1px solid var(--border-color);
   max-width: 400px;
   width: 100%;
-  transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .login-card h2 {
   color: var(--text-primary);
   font-size: 1.25rem;
   font-weight: 600;
-  transition: color 0.3s ease;
 }
 
 .login-card p {
-  color: var(--text-quaternary);
+  color: var(--text-tertiary);
   font-size: 0.85rem;
-  transition: color 0.3s ease;
 }
 
 .login-form {
@@ -57,23 +54,21 @@
   transform: translateY(-50%);
   background: none;
   border: none;
-  color: var(--text-quaternary);
+  color: var(--text-tertiary);
   font-size: 0.72rem;
   font-family: inherit;
   font-weight: 500;
   cursor: pointer;
   padding: 4px 6px;
-  transition: color 0.3s ease;
 }
 
 .password-toggle:hover {
-  color: var(--text-secondary);
+  color: var(--text-primary);
 }
 
 .login-toggle {
   font-size: 0.8rem;
-  color: var(--text-quaternary);
-  transition: color 0.3s ease;
+  color: var(--text-tertiary);
 }
 
 .login-toggle a {
@@ -93,16 +88,16 @@
   gap: 6px;
   cursor: pointer;
   font-size: 0.82rem;
-  color: var(--text-secondary);
+  color: var(--text-primary);
   padding: 6px 10px;
   border-radius: 6px;
   border: 1px solid var(--border-color);
-  background: var(--bg-primary);
-  transition: border-color 0.2s, background 0.2s, color 0.3s ease;
+  background: var(--input-bg);
+  transition: border-color 0.2s, background 0.2s;
 }
 
 .checkbox-label:hover {
-  border-color: var(--border-hover);
+  border-color: var(--bg-tertiary);
   background: var(--card-bg);
 }
 

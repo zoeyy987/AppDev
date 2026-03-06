@@ -5,10 +5,9 @@
     gap: 16px;
     margin-top: 20px;
     padding: 16px;
-    background: var(--card-bg);
+    background: var(--input-bg);
     border-radius: 10px;
     border: 1px solid var(--border-color);
-    transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .profile-preview__avatar {
@@ -20,28 +19,24 @@
     justify-content: center;
     font-weight: 700;
     font-size: 1rem;
-    color: var(--text-inverse);
+    color: var(--text-primary);
     flex-shrink: 0;
-    background: linear-gradient(135deg, #3b82f6, #a855f7);
 }
 
 .profile-preview__info h4 {
     color: var(--text-primary);
     font-size: 0.95rem;
     font-weight: 600;
-    transition: color 0.3s ease;
 }
 
 .profile-preview__info p {
-    color: var(--text-tertiary);
+    color: var(--text-secondary);
     font-size: 0.78rem;
-    transition: color 0.3s ease;
 }
 
 .profile-preview__email {
-    color: var(--text-quaternary) !important;
+    color: var(--text-tertiary) !important;
     font-size: 0.72rem !important;
-    transition: color 0.3s ease;
 }
 
 /* Contact Layout */

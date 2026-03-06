@@ -78,23 +78,23 @@ function App() {
                 isLoggedIn ? <Navigate to="/" replace /> : <LoginPage onLogin={handleLogin} />
               } />
 
-              {/* Protected Routes */}
-              <Route element={<ProtectedLayout isLoggedIn={isLoggedIn} userRole={userRole} onLogout={handleLogout} />}>
+            {/* Protected Routes */}
+            <Route element={<ProtectedLayout isLoggedIn={isLoggedIn} userRole={userRole} onLogout={handleLogout} />}>
 
-                <Route path="/" element={<DashboardPage userRole={userRole} />} />
-                <Route path="/projects" element={<ProjectsPage userRole={userRole} />} />
+              <Route path="/" element={<DashboardPage userRole={userRole} />} />
+              <Route path="/projects" element={<ProjectsPage userRole={userRole} />} />
 
-                {/* Admin Routes */}
-                <Route path="/users" element={<UsersPage />} />
-                <Route path="/disputes" element={<DisputesPage />} />
+              {/* Admin Routes */}
+              <Route path="/users" element={<UsersPage />} />
+              <Route path="/disputes" element={<DisputesPage />} />
 
-                <Route path="/messages" element={<MessagesPage />} />
-                <Route path="/notifications" element={<NotificationsPage />} />
-                <Route path="/orders" element={<OrdersPage />} />
-                <Route path="/settings" element={<SettingsPage userRole={userRole} />} />
-                <Route path="/wallet" element={<WalletPage userRole={userRole} />} />
-                <Route path="/creator-profile" element={<CreatorProfilePage />} />
-              </Route>
+              <Route path="/messages" element={<MessagesPage />} />
+              <Route path="/notifications" element={<NotificationsPage />} />
+              <Route path="/orders" element={<OrdersPage />} />
+              <Route path="/settings" element={<SettingsPage userRole={userRole} />} />
+              <Route path="/wallet" element={<WalletPage userRole={userRole} />} />
+              <Route path="/creator-profile" element={<CreatorProfilePage />} />
+            </Route>
 
               {/* Fallback */}
               <Route path="*" element={<Navigate to="/" replace />} />

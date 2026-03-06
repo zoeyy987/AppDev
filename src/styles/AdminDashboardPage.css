@@ -19,11 +19,10 @@
     display: flex;
     align-items: center;
     gap: 12px;
-    transition: color 0.3s ease;
 }
 
 .admin-dashboard__subtitle {
-    color: rgba(255, 255, 255, 0.7);
+    color: var(--text-secondary);
     font-size: 1.1rem;
 }
 
@@ -38,10 +37,6 @@
     display: flex;
     align-items: center;
     gap: 1.25rem;
-    background: var(--card-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 12px;
-    transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .admin-stat-card--danger {
@@ -69,11 +64,10 @@
 }
 
 .admin-stat-card__label {
-    color: var(--text-tertiary);
+    color: var(--text-secondary);
     font-size: 0.85rem;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    transition: color 0.3s ease;
 }
 
 .admin-stat-card__label--danger {
@@ -85,7 +79,6 @@
     font-weight: bold;
     color: var(--text-primary);
     margin: 0;
-    transition: color 0.3s ease;
 }
 
 .admin-stat-card__value--danger {
@@ -97,7 +90,6 @@
     font-size: 1.25rem;
     color: var(--text-primary);
     margin: 0;
-    transition: color 0.3s ease;
 }
 
 .admin-alerts__list {
@@ -114,9 +106,6 @@
     align-items: center;
     flex-wrap: wrap;
     gap: 1rem;
-    background: var(--card-bg);
-    border: 1px solid var(--border-color);
-    transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .admin-alert-item--danger {
@@ -158,14 +147,12 @@
     color: var(--text-primary);
     font-size: 1.1rem;
     margin-bottom: 4px;
-    transition: color 0.3s ease;
 }
 
 .admin-alert-item__text {
-    color: var(--text-tertiary);
+    color: #a1a1aa;
     font-size: 0.9rem;
     margin: 0;
-    transition: color 0.3s ease;
 }
 
 .admin-alert-item__btn {
@@ -179,7 +166,6 @@
 }
 
 .admin-alert-item__time {
-    color: var(--text-tertiary);
+    color: #a1a1aa;
     font-size: 0.85rem;
-    transition: color 0.3s ease;
 }

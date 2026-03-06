@@ -16,11 +16,10 @@
     font-weight: bold;
     color: var(--text-primary);
     margin-bottom: 0.5rem;
-    transition: color 0.3s ease;
 }
 
 .client-dashboard__subtitle {
-    color: rgba(255, 255, 255, 0.7);
+    color: var(--text-secondary);
     font-size: 1.1rem;
 }
 
@@ -35,10 +34,6 @@
     display: flex;
     align-items: center;
     gap: 1.25rem;
-    background: var(--card-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 12px;
-    transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .client-stat-card__icon {
@@ -62,11 +57,10 @@
 }
 
 .client-stat-card__label {
-    color: var(--text-tertiary);
+    color: var(--text-secondary);
     font-size: 0.85rem;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    transition: color 0.3s ease;
 }
 
 .client-stat-card__value {
@@ -74,7 +68,6 @@
     font-weight: bold;
     color: var(--text-primary);
     margin: 0;
-    transition: color 0.3s ease;
 }
 
 .client-dashboard__grid {
@@ -94,7 +87,6 @@
     font-size: 1.25rem;
     color: var(--text-primary);
     margin: 0;
-    transition: color 0.3s ease;
 }
 
 .client-favorites__btn {
@@ -117,7 +109,6 @@
     border-radius: 12px;
     border: 1px solid var(--border-color);
     text-align: center;
-    transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .client-creator-card__avatar {
@@ -126,14 +117,12 @@
     border-radius: 50%;
     background: var(--bg-tertiary);
     margin: 0 auto 12px;
-    transition: background-color 0.3s ease;
 }
 
 .client-creator-card__name {
     color: var(--text-primary);
     font-size: 0.9rem;
     margin: 0 0 4px;
-    transition: color 0.3s ease;
 }
 
 .client-creator-card__rating {
@@ -156,21 +145,18 @@
     align-items: center;
     flex-wrap: wrap;
     gap: 1rem;
-    transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .client-hire-item__title {
-    color: var(--text-primary);
+    color: white;
     font-size: 1.1rem;
     margin-bottom: 4px;
-    transition: color 0.3s ease;
 }
 
 .client-hire-item__detail {
-    color: var(--text-tertiary);
+    color: #a1a1aa;
     font-size: 0.9rem;
     margin: 0;
-    transition: color 0.3s ease;
 }
 
 .client-hire-item__status {
@@ -194,15 +180,15 @@
   background: transparent;
   border: none;
   cursor: pointer;
-  color: var(--text-quaternary);
+  color: #71717a;
 }
 
 .glass-tab:hover {
-  color: var(--text-secondary);
+  color: #d4d4d8;
 }
 
 .glass-tab--active {
-  color: var(--text-primary);
+  color: #ffffff;
 }
 
 .glass-tab--active::after {
@@ -212,6 +198,6 @@
   left: 0;
   right: 0;
   height: 2px;
-  background-color: var(--text-primary);
+  background-color: #ffffff;
   border-radius: 2px 2px 0 0;
 }

@@ -11,13 +11,12 @@
     justify-content: space-between;
     gap: 12px;
     font-size: 0.82rem;
-    color: var(--text-secondary);
+    color: var(--text-primary);
     cursor: pointer;
     padding: 8px 12px;
     border-radius: 8px;
     border: 1px solid var(--border-color);
-    background: var(--bg-primary);
-    transition: border-color 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+    background: var(--input-bg);
 }
 
 .toggle-input {
@@ -28,7 +27,7 @@
     width: 40px;
     height: 22px;
     border-radius: 11px;
-    background: var(--border-hover);
+    background: var(--bg-tertiary);
     position: relative;
     flex-shrink: 0;
     transition: background 0.2s;
@@ -42,7 +41,7 @@
     width: 16px;
     height: 16px;
     border-radius: 50%;
-    background: var(--text-tertiary);
+    background: var(--text-secondary);
     transition: transform 0.2s, background 0.2s;
 }
 

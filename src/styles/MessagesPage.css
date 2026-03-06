@@ -3,7 +3,6 @@
     border: 1px solid var(--border-color);
     border-radius: 12px;
     padding: 24px;
-    transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .messages-list {
@@ -16,10 +15,9 @@
 
 .message-item {
     padding: 12px;
-    background: var(--bg-primary);
+    background: var(--input-bg);
     border-radius: 8px;
     border: 1px solid var(--border-color);
-    transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .message-item__header {
@@ -29,18 +27,15 @@
     margin-bottom: 6px;
     font-size: 0.82rem;
     color: var(--text-primary);
-    transition: color 0.3s ease;
 }
 
 .message-item__text {
     font-size: 0.8rem;
-    color: var(--text-tertiary);
+    color: var(--text-secondary);
     margin-bottom: 4px;
-    transition: color 0.3s ease;
 }
 
 .message-item__date {
     font-size: 0.68rem;
-    color: var(--text-quaternary);
-    transition: color 0.3s ease;
+    color: var(--text-tertiary);
 }
