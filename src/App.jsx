@@ -1,6 +1,7 @@
 import { useState, useCallback, lazy, Suspense } from 'react';
 import { Routes, Route, Navigate, Outlet } from 'react-router-dom';
 import { ProjectsProvider } from './context/ProjectsContext';
+import { ThemeProvider } from './context/ThemeContext';
 import Sidebar from './components/Sidebar';
 import './index.css';
 
@@ -66,40 +67,42 @@ function App() {
   }, []);
 
   return (
-    <ProjectsProvider>
-      <div className="app">
-        <Suspense fallback={<PageLoader />}>
-          <Routes>
-            {/* Public Routes */}
-            <Route path="/landing" element={<LandingPage />} />
-            <Route path="/login" element={
-              isLoggedIn ? <Navigate to="/" replace /> : <LoginPage onLogin={handleLogin} />
-            } />
+    <ThemeProvider>
+      <ProjectsProvider>
+        <div className="app">
+          <Suspense fallback={<PageLoader />}>
+            <Routes>
+              {/* Public Routes */}
+              <Route path="/landing" element={<LandingPage />} />
+              <Route path="/login" element={
+                isLoggedIn ? <Navigate to="/" replace /> : <LoginPage onLogin={handleLogin} />
+              } />
 
-            {/* Protected Routes */}
-            <Route element={<ProtectedLayout isLoggedIn={isLoggedIn} userRole={userRole} onLogout={handleLogout} />}>
+              {/* Protected Routes */}
+              <Route element={<ProtectedLayout isLoggedIn={isLoggedIn} userRole={userRole} onLogout={handleLogout} />}>
 
-              <Route path="/" element={<DashboardPage userRole={userRole} />} />
-              <Route path="/projects" element={<ProjectsPage userRole={userRole} />} />
+                <Route path="/" element={<DashboardPage userRole={userRole} />} />
+                <Route path="/projects" element={<ProjectsPage userRole={userRole} />} />
 
-              {/* Admin Routes */}
-              <Route path="/users" element={<UsersPage />} />
-              <Route path="/disputes" element={<DisputesPage />} />
+                {/* Admin Routes */}
+                <Route path="/users" element={<UsersPage />} />
+                <Route path="/disputes" element={<DisputesPage />} />
 
-              <Route path="/messages" element={<MessagesPage />} />
-              <Route path="/notifications" element={<NotificationsPage />} />
-              <Route path="/orders" element={<OrdersPage />} />
-              <Route path="/settings" element={<SettingsPage userRole={userRole} />} />
-              <Route path="/wallet" element={<WalletPage userRole={userRole} />} />
-              <Route path="/creator-profile" element={<CreatorProfilePage />} />
-            </Route>
+                <Route path="/messages" element={<MessagesPage />} />
+                <Route path="/notifications" element={<NotificationsPage />} />
+                <Route path="/orders" element={<OrdersPage />} />
+                <Route path="/settings" element={<SettingsPage userRole={userRole} />} />
+                <Route path="/wallet" element={<WalletPage userRole={userRole} />} />
+                <Route path="/creator-profile" element={<CreatorProfilePage />} />
+              </Route>
 
-            {/* Fallback */}
-            <Route path="*" element={<Navigate to="/" replace />} />
-          </Routes>
-        </Suspense>
-      </div>
-    </ProjectsProvider>
+              {/* Fallback */}
+              <Route path="*" element={<Navigate to="/" replace />} />
+            </Routes>
+          </Suspense>
+        </div>
+      </ProjectsProvider>
+    </ThemeProvider>
   );
 }
 

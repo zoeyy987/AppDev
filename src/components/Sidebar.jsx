@@ -1,4 +1,5 @@
 import { NavLink } from 'react-router-dom';
+import { useTheme } from '../context/ThemeContext';
 import {
     LayoutGrid,
     Briefcase,
@@ -9,10 +10,13 @@ import {
     LogOut,
     Users,
     AlertTriangle,
-    ShieldCheck
+    ShieldCheck,
+    Moon,
+    Sun
 } from 'lucide-react';
 
 const Sidebar = ({ userRole, onLogout }) => {
+    const { isDark, toggleTheme } = useTheme();
     // Define navigation links based on user role
     const clientMenu = [
         { to: '/', label: 'Marketplace', icon: <LayoutGrid size={18} /> },
@@ -77,6 +81,14 @@ const Sidebar = ({ userRole, onLogout }) => {
             </nav>
 
             <div className="sidebar-footer">
+                <button 
+                    className="nav-item" 
+                    onClick={toggleTheme}
+                    title={isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+                >
+                    {isDark ? <Sun size={18} /> : <Moon size={18} />}
+                    <span>{isDark ? 'Light Mode' : 'Dark Mode'}</span>
+                </button>
                 {userRole !== 'admin' && (
                     <NavLink to="/settings" className={({ isActive }) => `nav-item ${isActive ? 'nav-item--active' : ''}`}>
                         <Settings size={18} />

@@ -14,11 +14,12 @@
 .admin-dashboard__title {
     font-size: 2.5rem;
     font-weight: bold;
-    color: white;
+    color: var(--text-primary);
     margin-bottom: 0.5rem;
     display: flex;
     align-items: center;
     gap: 12px;
+    transition: color 0.3s ease;
 }
 
 .admin-dashboard__subtitle {
@@ -37,6 +38,10 @@
     display: flex;
     align-items: center;
     gap: 1.25rem;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .admin-stat-card--danger {
@@ -64,10 +69,11 @@
 }
 
 .admin-stat-card__label {
-    color: #a1a1aa;
+    color: var(--text-tertiary);
     font-size: 0.85rem;
     text-transform: uppercase;
     letter-spacing: 0.05em;
+    transition: color 0.3s ease;
 }
 
 .admin-stat-card__label--danger {
@@ -77,8 +83,9 @@
 .admin-stat-card__value {
     font-size: 1.75rem;
     font-weight: bold;
-    color: white;
+    color: var(--text-primary);
     margin: 0;
+    transition: color 0.3s ease;
 }
 
 .admin-stat-card__value--danger {
@@ -88,8 +95,9 @@
 /* Activity Alerts */
 .admin-alerts__title {
     font-size: 1.25rem;
-    color: white;
+    color: var(--text-primary);
     margin: 0;
+    transition: color 0.3s ease;
 }
 
 .admin-alerts__list {
@@ -106,6 +114,9 @@
     align-items: center;
     flex-wrap: wrap;
     gap: 1rem;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .admin-alert-item--danger {
@@ -144,15 +155,17 @@
 }
 
 .admin-alert-item__title {
-    color: white;
+    color: var(--text-primary);
     font-size: 1.1rem;
     margin-bottom: 4px;
+    transition: color 0.3s ease;
 }
 
 .admin-alert-item__text {
-    color: #a1a1aa;
+    color: var(--text-tertiary);
     font-size: 0.9rem;
     margin: 0;
+    transition: color 0.3s ease;
 }
 
 .admin-alert-item__btn {
@@ -166,6 +179,7 @@
 }
 
 .admin-alert-item__time {
-    color: #a1a1aa;
+    color: var(--text-tertiary);
     font-size: 0.85rem;
+    transition: color 0.3s ease;
 }

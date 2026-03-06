@@ -5,9 +5,10 @@
     gap: 16px;
     margin-top: 20px;
     padding: 16px;
-    background: #0e0e11;
+    background: var(--card-bg);
     border-radius: 10px;
-    border: 1px solid #27272a;
+    border: 1px solid var(--border-color);
+    transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .profile-preview__avatar {
@@ -19,24 +20,28 @@
     justify-content: center;
     font-weight: 700;
     font-size: 1rem;
-    color: #fff;
+    color: var(--text-inverse);
     flex-shrink: 0;
+    background: linear-gradient(135deg, #3b82f6, #a855f7);
 }
 
 .profile-preview__info h4 {
-    color: #fafafa;
+    color: var(--text-primary);
     font-size: 0.95rem;
     font-weight: 600;
+    transition: color 0.3s ease;
 }
 
 .profile-preview__info p {
-    color: #a1a1aa;
+    color: var(--text-tertiary);
     font-size: 0.78rem;
+    transition: color 0.3s ease;
 }
 
 .profile-preview__email {
-    color: #71717a !important;
+    color: var(--text-quaternary) !important;
     font-size: 0.72rem !important;
+    transition: color 0.3s ease;
 }
 
 /* Contact Layout */

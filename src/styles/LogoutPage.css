@@ -12,12 +12,13 @@
     align-items: center;
     text-align: center;
     gap: 14px;
-    background: #18181b;
+    background: var(--card-bg);
     padding: 48px 40px;
     border-radius: 12px;
-    border: 1px solid #27272a;
+    border: 1px solid var(--border-color);
     max-width: 360px;
     width: 100%;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .logout-logo {
@@ -26,12 +27,14 @@
 }
 
 .logout-card h2 {
-    color: #fafafa;
+    color: var(--text-primary);
     font-size: 1.25rem;
     font-weight: 600;
+    transition: color 0.3s ease;
 }
 
 .logout-card p {
-    color: #71717a;
+    color: var(--text-quaternary);
     font-size: 0.85rem;
+    transition: color 0.3s ease;
 }

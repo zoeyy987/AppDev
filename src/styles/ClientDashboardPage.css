@@ -14,8 +14,9 @@
 .client-dashboard__title {
     font-size: 2.5rem;
     font-weight: bold;
-    color: white;
+    color: var(--text-primary);
     margin-bottom: 0.5rem;
+    transition: color 0.3s ease;
 }
 
 .client-dashboard__subtitle {
@@ -34,6 +35,10 @@
     display: flex;
     align-items: center;
     gap: 1.25rem;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .client-stat-card__icon {
@@ -57,17 +62,19 @@
 }
 
 .client-stat-card__label {
-    color: #a1a1aa;
+    color: var(--text-tertiary);
     font-size: 0.85rem;
     text-transform: uppercase;
     letter-spacing: 0.05em;
+    transition: color 0.3s ease;
 }
 
 .client-stat-card__value {
     font-size: 1.75rem;
     font-weight: bold;
-    color: white;
+    color: var(--text-primary);
     margin: 0;
+    transition: color 0.3s ease;
 }
 
 .client-dashboard__grid {
@@ -85,8 +92,9 @@
 
 .client-section__title {
     font-size: 1.25rem;
-    color: white;
+    color: var(--text-primary);
     margin: 0;
+    transition: color 0.3s ease;
 }
 
 .client-favorites__btn {
@@ -104,25 +112,28 @@
 
 .client-creator-card {
     min-width: 140px;
-    background: rgba(255, 255, 255, 0.02);
+    background: var(--card-bg);
     padding: 1.5rem 1rem;
     border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-color);
     text-align: center;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .client-creator-card__avatar {
     width: 64px;
     height: 64px;
     border-radius: 50%;
-    background: #27272a;
+    background: var(--bg-tertiary);
     margin: 0 auto 12px;
+    transition: background-color 0.3s ease;
 }
 
 .client-creator-card__name {
-    color: white;
+    color: var(--text-primary);
     font-size: 0.9rem;
     margin: 0 0 4px;
+    transition: color 0.3s ease;
 }
 
 .client-creator-card__rating {
@@ -137,26 +148,29 @@
 /* Active Hires */
 .client-hire-item {
     padding: 1.25rem;
-    background: rgba(255, 255, 255, 0.02);
+    background: var(--card-bg);
     border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-color);
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
     gap: 1rem;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .client-hire-item__title {
-    color: white;
+    color: var(--text-primary);
     font-size: 1.1rem;
     margin-bottom: 4px;
+    transition: color 0.3s ease;
 }
 
 .client-hire-item__detail {
-    color: #a1a1aa;
+    color: var(--text-tertiary);
     font-size: 0.9rem;
     margin: 0;
+    transition: color 0.3s ease;
 }
 
 .client-hire-item__status {
@@ -180,15 +194,15 @@
   background: transparent;
   border: none;
   cursor: pointer;
-  color: #71717a;
+  color: var(--text-quaternary);
 }
 
 .glass-tab:hover {
-  color: #d4d4d8;
+  color: var(--text-secondary);
 }
 
 .glass-tab--active {
-  color: #ffffff;
+  color: var(--text-primary);
 }
 
 .glass-tab--active::after {
@@ -198,6 +212,6 @@
   left: 0;
   right: 0;
   height: 2px;
-  background-color: #ffffff;
+  background-color: var(--text-primary);
   border-radius: 2px 2px 0 0;
 }
